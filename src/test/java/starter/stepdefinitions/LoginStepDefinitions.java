@@ -4,8 +4,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
-import starter.dashboard.OverviewData;
-import starter.login.DoLogin;
+import net.serenitybdd.screenplay.actions.Click;
+import starter.ui.dashboard.LeftMenu;
+import starter.questions.OverviewData;
+import starter.tasks.DoLogin;
 import starter.navigation.NavigateTo;
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
@@ -31,6 +33,10 @@ public class LoginStepDefinitions {
     public void he_should_have_access_to_manage_his_account() {
         theActorInTheSpotlight().should(
                 seeThat("The displayed credit available", OverviewData.creditAvailable(), equalTo("$17,800"))
+        );
+
+        theActorInTheSpotlight().attemptsTo(
+                Click.on(LeftMenu.CREDIT_CARD_LINK)
         );
     }
 
